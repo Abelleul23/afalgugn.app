@@ -1,0 +1,137 @@
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'afalgugn/fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'afalgugn/css/owl.carousel.min.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'afalgugn/css/bootstrap.min.css' %}">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'afalgugn/css/style.css' %}">
+
+    <title>Afalgugn App</title>
+  </head>
+  <body>
+  
+    
+    <aside class="sidebar">
+
+      <div class="toggle">
+        <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+              <span></span>
+            </a>
+      </div>
+      <div class="side-inner">
+
+        <div class="profile">
+            <img src="{% if user.userprofile.profile_image %}{{ user.userprofile.profile_image.url }}{% else %}{% static 'afalgugn/images/img_1.jpg' %}{% endif %}" alt="Profile Image" class="img-fluid">
+            <h3 class="name mb-4">{{ user.username }} <span class="icon-check_circle verified"></span></h3>
+          
+            <div class="counter d-flex">
+              <div class="col">
+                <strong class="number">{{ user.userprofile.posted_items }}</strong>
+                <span class="number-label">Posted Items</span>
+              </div>
+              <div class="col">
+                <strong class="number">{{ user.userprofile.rating }}</strong>
+                <span class="number-label">Rating</span>
+              </div>
+            </div>
+          
+            <div class="bio">
+              <p>{{ user.userprofile.bio }}</p>
+            </div>
+          </div>
+
+        <div class="tags">
+          <h3>Favourite Tags</h3>
+          <ul>
+            <li><a href="#">photography</a>,</li>
+            <li><a href="#">food</a>,</li>
+            <li><a href="#">news</a>,</li>
+            <li><a href="#">design</a>,</li>
+            <li><a href="#">web</a>,</li>
+            <li><a href="#">technology</a>,</li>
+            <li><a href="#">travel</a>,</li>
+            <li><a href="#">business</a>,</li>
+            <li><a href="#">javascript</a>,</li>
+            <li><a href="#">code</a>,</li>
+            <li><a href="#">html</a>,</li>
+          </ul>
+        </div>
+
+        <div class="activity">
+          <h3>Activity</h3>
+          <p>Professional Photographer</p>
+        </div>
+
+        <div class="activity">
+          <h3>Location</h3>
+          <p>New York, USA</p>
+        </div>
+
+        <div class="fav-profiles">
+          <h3>Fav Profiles</h3>
+          <div class="d-flex">
+            <div class="row">
+              <div class="col"><a href="#"><img src="{% static 'afalgugn/images/person_1.jpg' %}" alt="Image" class="img-fluid"></a></div>
+              <div class="col"><a href="#"><img src="{% static 'afalgugn/images/person_2.jpg' %}" alt="Image" class="img-fluid"></a></div>
+              <div class="col"><a href="#"><img src="{% static 'afalgugn/images/person_3.jpg' %}" alt="Image" class="img-fluid"></a></div>
+              <div class="col"><a href="#"><img src="{% static 'afalgugn/images/person_4.jpg' %}" alt="Image" class="img-fluid"></a></div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+ </aside>
+ <main>
+  <div class="site-section">
+      <div class="container">
+          <div class="row justify-content-center">
+              
+              <div class="col-md-9">
+                  <div class="row">
+                      <div class="col-md-6">
+                        
+                        <h6><a href="{% url 'indexl' %}">Do you want to view reported lost items?</a></h6>
+                        
+                          {% for founditem in founditems %}
+                          <div class="d-flex post-entry">
+                              <div class="custom-thumbnail">
+                                  <img src="{{ founditem.image.url }}" alt="found Item Image" class="img-fluid">
+                              </div>
+                              <div class="post-content">
+                                  <h3>{{ founditem.item_name }}</h3>
+                                  <div class="post-meta"><span>Posted:</span> Dec 17, 2019</div>
+                              </div>
+                          </div>
+                          {% endfor %}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>
+    
+
+    <script src="{% static 'afalgugn/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'afalgugn/js/popper.min.js' %}"></script>
+    <script src="{% static 'afalgugn/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'afalgugn/js/main.js' %}"></script>
+  </body>
+</html>
